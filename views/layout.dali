@@ -53,9 +53,6 @@
 							{{endif}}
 						</a>
 					</li>
-					<li class="">
-						<a href="/connect/">Connect to ...</a>
-					</li>
 					<li class="divider-vertical"></li>
 				</ul>
 			</div>

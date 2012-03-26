@@ -13,8 +13,22 @@
 					<td><a href="{{out item.backdoor.url /}}">{{out item.backdoor.url /}}</a></td>
 				</tr>
 				<tr>
+					<th>Status</th>
+					<td>
+						{{if item.backdoor.status}}
+							{{out item.backdoor.status /}}
+						{{if-else}}
+							unknown
+						{{endif}}
+					</td>
+				</tr>
+				<tr>
 					<th>Service name</th>
 					<td>{{out item.backdoor.serviceName /}}</td>
+				</tr>
+				<tr>
+					<th>Last successfull connection</th>
+					<td>{{out item.backdoor.lastConnection /}}</td>
 				</tr>
 				<tr>
 					<th>API Servion</th>

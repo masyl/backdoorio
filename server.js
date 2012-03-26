@@ -63,10 +63,15 @@ app.get('/', function(req, res) {
 
 // View the list of available backdoors
 app.get('/backdoors/', function(req, res) {
+	var model = {};
+	if (req.query.error) {
+		model.error = {
+			message: req.query.error
+		}
+	}
 	backdoors.all(function (err, backdoors) {
-		res.render("backdoors", {
-			backdoors: backdoors.array()
-		});
+		model.backdoors = backdoors.array();
+		res.render("backdoors", model);
 	});
 });
 
@@ -125,6 +130,24 @@ app.get('/backdoors/:hash', function(req, res) {
 	});
 });
 
+// View the management root of a specific backdoor
+app.get('/backdoors/:hash/connect', function(req, res) {
+	var backdoor = backdoors.find({
+		hashId: req.params.hash
+	}, function (err, backdoor) {
+		backdoor.connect(function (err, backdoor) {
+			// If no error occured, procede to this backdoors landing page
+			if (!err) {
+				res.redirect("/backdoors/" + backdoor[0].hashId + "/");
+			} else {
+				// Otherwise return to the list of backdoors with the error message
+				res.redirect("/backdoors/?error=" + err.message);
+			}
+
+		});
+	});
+});
+
 app.post('/connect/', function(req, res) {
 	var
 			createdBackdoor,
@@ -150,8 +173,9 @@ app.post('/connect/', function(req, res) {
 			// Create the model with the backdoor in it
 			if (err) {
 				res.redirect("/backdoors/?error=" + err.message);
+			} else {
+				res.redirect("/backdoors/" + createdBackdoor[0].hashId + "/");
 			}
-			res.redirect("/backdoors/" + createdBackdoor[0].hashId + "/");
 		});
 	} else {
 		res.redirect("/backdoors/?error=No backdoor url was submitted!");
