@@ -1,0 +1,64 @@
+<section>
+	{{if item.backdoor }}
+		<div class="row">
+			<div class="span4">
+				<ul class="nav nav-list">
+					{{each item.navigation}}
+						<li class="nav-header">
+							{{out item.label /}}
+						</li>
+						{{each item.childs}}
+							<li>
+								<a href="/backdoor/---/{{out item.id /}}">
+									{{out item.label /}}
+								</a>
+							</li>
+						{{endeach}}
+					{{endeach}}
+				</ul>
+			</div>
+			<div class="span8">
+				<div class="page-header">
+					<h1>
+						Backdoor
+						<small>for {{out item.backdoor.serviceName /}}</small>
+					</h1>
+				</div>
+			</div>
+		</div>
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<th>Backdoor address</th>
+					<td><a href="{{out item.backdoor.url /}}">{{out item.backdoor.url /}}</a></td>
+				</tr>
+				<tr>
+					<th>Service name</th>
+					<td>{{out item.backdoor.serviceName /}}</td>
+				</tr>
+				<tr>
+					<th>API Servion</th>
+					<td>{{out item.backdoor.version /}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+			<a class="btn" href="/backdoors/">Back</a>
+		</div>
+	{{if-else}}
+		<div class="page-header">
+			<h1>
+				Backdoor
+				<small>for ...</small>
+			</h1>
+		</div>
+		<div class="alert alert-error">
+			Backdoor not found!
+		</div>
+	<div>
+		<a class="btn" href="/backdoors/">Back</a>
+	</div>
+	{{endif}}
+</section>
+		
+		

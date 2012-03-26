@@ -1,0 +1,8 @@
+{
+	"backdoors": [
+		{
+			"title": "Backdoor.io self-admin",
+			"url": "http://localhost:8088/backdoor"
+		}
+	]
+}

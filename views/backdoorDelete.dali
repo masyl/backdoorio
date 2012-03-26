@@ -1,0 +1,33 @@
+<section>
+	{{if item.backdoor }}
+		<div class="page-header">
+			<h1>
+				Delete a Backdoor
+			</h1>
+		</div>
+		<div class="alert alert-block">
+			<h4 class="alert-heading">Please confirm deletion!</h4>
+			Deleting a backdoor will delete the connection to the service. You will not loose any administrative data except for password and display preferences.
+		</div>
+		<div>
+			<form method="post" action="./">
+				<input type="submit" class="btn" value="Confirm Deletion" />
+			</form>
+		</div>
+	{{if-else}}
+		<div class="page-header">
+			<h1>
+				Backdoor
+				<small>for ...</small>
+			</h1>
+		</div>
+		<div class="alert alert-error">
+			Backdoor not found!
+		</div>
+		<div>
+			<a class="btn" href="/backdoors/">Back</a>
+		</div>
+	{{endif}}
+</section>
+		
+		

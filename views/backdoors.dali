@@ -1,0 +1,90 @@
+<section>
+	<div class="row">
+		<div class="span6">
+			<div class="page-header">
+				<h1>Backdoors</h1>
+			</div>
+
+			{{if item.backdoors.length }}
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Service</th>
+							<th>Address</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{{each item.backdoors}}
+							<tr>
+								<td>{{out item.serviceName /}}</td>
+								<td>{{out item.url /}}</td>
+								<td>
+									<div class="btn-group">
+										<a class="btn btn-mini"
+										   href="/backdoors/{{out item.hashId /}}/">Manage</a>
+										<button class="btn dropdown-toggle btn-mini"
+												data-toggle="dropdown">
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+											<li>
+												<a href="/backdoors/{{out item.hashId /}}/details/">
+													Backdoor details
+												</a>
+											</li>
+											<li>
+												<a href="/backdoors/{{out item.hashId /}}/delete/">
+													Delete
+												</a>
+											</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+						{{endeach}}
+					</tbody>
+				</table>
+			{{if-else}}
+				<div class="alert-warning">
+					To begin, you must first create a backdoor. Fill out the form available on the right.
+				</div>
+			{{endif}}
+		</div>
+		<div class="span6">
+			<br/>
+			<h2>Create a backdoor
+				<small>to a remote service</small>
+			</h2>
+
+			{{ if item.error }}
+				<div class="alert alert-error">
+					<a class="close" data-dismiss="alert">×</a>
+					<strong>Error:</strong> {{out item.error.message /}}
+				</div>
+			{{ if-else }}
+				{{if item.backdoor}}
+					<div class="alert alert-success">
+						<a class="close" data-dismiss="alert">×</a>
+						<strong>Success:</strong> A backdoor has been saved for: "{{out item.backdoor.url /}}"
+					</div>
+				{{ endif }}
+			{{ endif }}
+
+			<div class="row">
+				<div class="span6">
+					<form action="/connect/" method="post" class="well">
+						<input class="span5" id="url" name="url"
+								placeholder="http://yourdomain.com/backdoor/"
+								value="{{out item.backdoor && item.backdoor.url/}}"
+								/>
+						<br />
+						<button class="btn">Connect</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+		
+		

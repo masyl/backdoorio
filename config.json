@@ -1,0 +1,8 @@
+{
+	"server": {
+		"port": 3333,
+		"secret": "82j7dnn3haoi0wkd92hncbags792"
+	},
+	"sessionStore": "redis",
+	"keys": "keys.json"
+}
