@@ -1,3 +1,13 @@
+{{if item.breadcrumb }}
+	<ul class="breadcrumb">
+		{{each item.breadcrumb }}
+			<li>
+				<a href="{{out item.url /}}">{{out item.label /}}</a>
+				{{if !loop.isLast()}}<span class="divider">/</span>{{endif}}
+			</li>
+		{{endeach}}
+	</ul>
+{{endif}}
 <section>
 	{{if item.backdoor }}
 		<div class="row">
@@ -20,8 +30,8 @@
 			<div class="span8">
 				<div class="page-header">
 					<h1>
-						Backdoor
-						<small>for {{out item.backdoor.serviceName /}}</small>
+						{{out item.backdoor.serviceName /}}
+						<small>@ {{out item.backdoor.url /}}</small>
 					</h1>
 				</div>
 			</div>

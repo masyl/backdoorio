@@ -119,14 +119,22 @@ app.get('/backdoors/:hash/details/', function(req, res) {
 
 // View the management root of a specific backdoor
 app.get('/backdoors/:hash', function(req, res) {
+	var model = {};
+	model.breadcrumb = [{
+		label: "Backdoors",
+		url: "/backdoors/"
+	}];
 	var backdoor = backdoors.find({
 		hashId: req.params.hash
 	}, function (err, backdoor) {
-		res.render("backdoor", {
-			error: err,
-			backdoor: backdoor.one(),
-			backdoors: backdoors.array()
+		model.backdoor = backdoor.one();
+		model.breadcrumb.push({
+			label: model.backdoor.serviceName,
+			url: "/backdoors/" + model.backdoor.hashId + "/"
 		});
+		model.err = err;
+		model.backdoors = backdoors.array();
+		res.render("backdoor", model);
 	});
 });
 
