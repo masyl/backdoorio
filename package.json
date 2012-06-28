@@ -1,6 +1,6 @@
 {
 	"name": "backdoorio",
-	"description": "A system administration client/server app",
+	"description": "A system administration client/server web app",
 	"version": "0.0.1",
 	"author": "Mathieu Sylvain <mathieu@ti-coco.com>",
 	"keywords": [
